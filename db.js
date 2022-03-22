@@ -9,7 +9,10 @@ const devConfig = {
   database: process.env.PG_DATABASE
 }
 const prodConfig = {
-  connectionString: process.env.DATABASE_URL // comes from heroku postgres
+  connectionString: process.env.DATABASE_URL, // comes from heroku postgres
+  ssl: process.env.ENVIRONMENT === 'local' ? false : {
+    rejectUnauthorized: false
+  }
 }
 const pool = new Pool(process.env.NODE_ENV === 'production' ? prodConfig : devConfig);
 
