@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "scripts": {
     "start": "node index.js",
     "start:local-db": "docker run -it -e 'POSTGRES_HOST_AUTH_METHOD=trust' -e 'POSTGRES_DB=pernstack' -p 5432:5432 postgres",
