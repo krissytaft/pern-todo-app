@@ -11,7 +11,6 @@ const devConfig = {
 const prodConfig = {
   connectionString: process.env.DATABASE_URL // comes from heroku postgres
 }
-// const pool = new Pool(process.env.NODE_ENV === 'production' ? prodConfig : devConfig);
-const pool = new Pool(prodConfig);
-console.log('The node env is: ' + process.env.NODE_ENV)
+const pool = new Pool(process.env.NODE_ENV === 'production' ? prodConfig : devConfig);
+
 module.exports = pool;
