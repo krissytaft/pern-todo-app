@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "start:local-db": "POSTGRES_HOST_AUTH_METHOD=trust” -e “POSTGRES_DB=pernstack -p 5432:5432 dbUser",
+    "start:local-db": "docker run -it -e 'POSTGRES_HOST_AUTH_METHOD=trust' -e 'POSTGRES_DB=pernstack' -p 5432:5432 postgres",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "henry",
