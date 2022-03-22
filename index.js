@@ -2,10 +2,16 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const PORT = process.env.PORT || 5000;
 
 //middleware
 app.use(cors());
 app.use(express.json()); //req.body
+
+// If we are not running locally, we want to serve our frontend from this server
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./client/build'))
+}
 
 //ROUTES//
 
@@ -82,6 +88,11 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("server has started on port 5000");
+// Implement a catch all
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+})
+
+app.listen(PORT, () => {
+  console.log(`server has started on port ${PORT}`);
 });
